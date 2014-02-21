@@ -15,7 +15,7 @@ function convert_duration($sec) {
 }
 
 $feed = new SimplePie();
-$feed->set_feed_url('http://feeds.feedburner.com/RaumzeitlaborPodcast');
+$feed->set_feed_url('http://penndorf.me/rfc/video-feed.php');
 $feed->init();
 $feed->handle_content_type();
 
@@ -38,11 +38,12 @@ foreach ($feed->get_items() as $feed_item){
 ?><!DOCTYPE html>
 <html>
 <head>
-	<title>RaumZeitLabor Podcast</title>
+	<title>Request for Comments</title>
 	
 	<meta charset="utf-8">
 	
-	<link rel="alternate" type="application/rss+xml" title="Podcast Feed" href="http://feeds.feedburner.com/RaumzeitlaborPodcast">
+	<link rel="alternate" type="application/rss+xml" title="Video Feed" href="http://penndorf.me/rfc/video-feed.php">
+	<link rel="alternate" type="application/rss+xml" title="Audio Feed" href="http://penndorf.me/rfc/feed.php">
 	
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -57,22 +58,24 @@ foreach ($feed->get_items() as $feed_item){
 
 	  <div class="masthead">
 		<ul class="nav nav-pills pull-right">
-		  <li class="active"><a href="index.php">Vortragsliste</a></li>
+		  <li class="active"><a href="index.php">Bei- und Vorträge</a></li>
 		  <li><a href="imprint.htm">Kontakt/Impressum</a></li>
 		</ul>
-		<h3 class="muted">RaumZeitLabor Podcast</h3>
+		<h3 class="muted">RFC</h3>
 	  </div>
 
 	  <hr>
 
 	  <div class="jumbotron">
-			<h1>RaumZeitLabor Podcast</h1>
-			<p class="lead">Freies Wissen &mdash; nun auch als Podcast</p>
-			<a href="https://itunes.apple.com/de/podcast/raumzeitlabor-podcast/id595143602?l=de"><img src="subscribe.png"></a>
+			<h1>Request for Comments</h1>
+			<p class="lead">Hier spricht David Penndorf. Bei- und Vorträge, Experimente und sonstige Mitschnitte.</p>
+			<a href="https://itunes.apple.com/de/podcast/hasi-talks/id689712949?mt=2"><img src="subscribe.png"></a>
 			<div style="margin-top: 10px;">
-				<a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="https://raumzeitlabor.de/wiki/Podcast"></a>
-				<noscript><a href="http://flattr.com/thing/1106488/RaumZeitLabor-Podcast" target="_blank">
-				<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
+				<a href="https://penndorf.me/rfc/feed.php">Audio-Feed direkt abonieren</a> <br /> <br />
+				<a href="https://penndorf.me/rfc/video-feed.php">Video-Feed direkt abonieren</a> <br /> <br />
+				<script id='fb3wshf'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=Hybr1s&url=http%3A%2F%2Fpenndorf.me%2Frfc%2F';f.title='Flattr';f.height=62;f.width=55;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fb3wshf');</script>
+				<br /><br />
+                                <a href="https://twitter.com/hybr1s">@Hybr1s</a>
 			</div>
 	  </div>
 
@@ -93,7 +96,7 @@ foreach ($feed->get_items() as $feed_item){
 	  <hr>
 
 	  <div class="footer">
-		<p style="text-align: center;"><a rel="license" href="http://creativecommons.org/licenses/by/3.0/de/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/de/88x31.png" /></a></p>
+		<p style="text-align: center;"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.de"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></p>
 	  </div>
 
 	</div> <!-- /container -->

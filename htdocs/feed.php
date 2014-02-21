@@ -28,7 +28,7 @@ if($handle = opendir('data/meta')){
 $items = array();
 
 foreach ($metafiles as $metafile) {
-	if (!file_exists('data/videos/'.$metafile["id"].'.mp4')) {
+	if (!file_exists('data/audio/'.$metafile["id"].'.aac')) {
 		continue;
 	}
 	$item = array();
@@ -39,9 +39,9 @@ foreach ($metafiles as $metafile) {
 	$item["publishedAt"] = date(DATE_RFC822, strtotime($metafile["publishedAt"]));
 	$item["title"] = xmlentities($metafile["title"]);
 	$item["publishedAt_raw"] = strtotime($metafile["publishedAt"]);
-	$item["filesize"] = filesize('data/videos/'.$item["id"].'.mp4');
+	$item["filesize"] = filesize('data/audio/'.$item["id"].'.aac');
 	
-	$item["flattr_url"] = "https://flattr.com/submit/auto?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{$item["id"]}&amp;user_id={$config["flattr"]["user_id"]}&amp;title=".urlencode($item["title"])."&amp;tags={$config["flattr"]["tags"]}&amp;category=video";
+	$item["flattr_url"] = "https://flattr.com/submit/auto?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{$item["id"]}&amp;user_id={$config["flattr"]["user_id"]}&amp;title=".urlencode($item["title"])."&amp;tags={$config["flattr"]["tags"]}&amp;category=audio";
 	
 	$item["description"] .= "<p><a href=\"{$item["flattr_url"]}\" title=\"Flattr\"><img src=\"https://api.flattr.com/button/flattr-badge-large.png\"/></a></p>";	
 	$items[] = $item;
@@ -67,17 +67,17 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			<itunes:name><?= $config["owner_name"]; ?></itunes:name>
 			<itunes:email><?= $config["owner_mail"]; ?></itunes:email>
 		</itunes:owner>
-		<itunes:image href="http://podcast.raumzeitlabor.de/podcast1400.png" />
+		<itunes:image href="http://hasi.it/images/180px-Der_Hybr1s.jpg" />
 		<itunes:category text="<?= $config["category"]; ?>" />
 		<itunes:explicit>clean</itunes:explicit>
-		<itunes:new-feed-url>http://feeds.feedburner.com/RaumzeitlaborPodcast</itunes:new-feed-url>		
+		<itunes:new-feed-url>http://penndorf.me/rfc/feed.php</itunes:new-feed-url>		
 
 			<?php foreach ($items as $item) { ?>
 			<item>
 				<title><?=$item["title"];?></title>
 				<description><![CDATA[<?=$item["description"];?>]]></description>
-				<enclosure url="http://podcast.raumzeitlabor.de/data/videos/<?=$item["id"];?>.mp4" length="<?=$item["filesize"];?>" type="video/mp4" />
-				<guid>http://rzlcast.horo.li/data/videos/<?=$item["id"];?>.mp4</guid>
+				<enclosure url="http://penndorf.me/rfc/data/audio/<?=$item["id"];?>.aac" length="<?=$item["filesize"];?>" type="audio/aac" />
+				<guid>http://penndorf.me/rfc/data/audio/<?=$item["id"];?>.aac</guid>
 				<pubDate><?=$item["publishedAt"];?></pubDate>
 				<itunes:author><?=$author;?></itunes:author>
 				<itunes:subtitle><![CDATA[<?=$item["description"];?>]]></itunes:subtitle>
@@ -86,7 +86,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 				<itunes:duration><?=$item["duration"];?></itunes:duration>
 				<atom:link rel="payment" href="<?=$item["flattr_url"];?>" type="text/html" />
 			</item>
-			<?}?>
+			<?php }?>
 			
 	</channel>
 </rss>
